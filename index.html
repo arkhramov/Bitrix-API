@@ -2,36 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bitrix API</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 
 <div id="app">
-    <div class="row">
-        <div class="col-sm-6">
-            <div id="dealNew" class="btn active"></div>
-            <div id="dealInProcess" class="btn"></div>
-            <div id="dealProcessed" class="btn"></div>
-            <div id="dealConverted" class="btn"></div>
-            <div id="dealJunk" class="btn"></div>
-        </div>
-        <div class="col-sm-6">
-            <table>
-                <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>Название</th>
-                        <th>Сумма</th>
-                    </tr>
-                </thead>
-                <tbody id="deal-list">
-                    <tr>
-                        <td colspan="3"></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div id="menuContainer">
+                    <div id="dealNew" class="btn active"></div>
+                    <div id="dealInProcess" class="btn"></div>
+                    <div id="dealProcessed" class="btn"></div>
+                    <div id="dealConverted" class="btn"></div>
+                    <div id="dealJunk" class="btn"></div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div id="dealList"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -45,11 +36,40 @@
     $(document).ready(function () {
 
         BX24.init(function () {
-            app.displayUserDeals(1);
+            app.displayUserDeals("NEW");
+            app.displayDealProducts();
             app.displayDealStatus();
         });
 
     });
+
+    document.getElementById('dealNew').addEventListener('click', function () {
+        app.displayUserDeals("NEW");
+    });
+    document.getElementById('dealInProcess').addEventListener('click', function () {
+        app.displayUserDeals("PREPARATION");
+    });
+    document.getElementById('dealProcessed').addEventListener('click', function () {
+        app.displayUserDeals("PREPAYMENT_INVOICE");
+    });
+    document.getElementById('dealConverted').addEventListener('click', function () {
+        app.displayUserDeals("EXECUTING");
+    });
+    document.getElementById('dealJunk').addEventListener('click', function () {
+        app.displayUserDeals("FINAL_INVOICE");
+    });
+
+    const menuContainer = document.getElementById("menuContainer");
+
+    const btns = menuContainer.getElementsByClassName("btn");
+
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            const current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
 
 </script>
 </body>
