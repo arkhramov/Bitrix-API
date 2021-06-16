@@ -1,16 +1,6 @@
 function application() {
 }
 
-application.prototype.displayCurrentUser = function (selector) {
-    BX24.callMethod(
-        'user.current',
-        {},
-        function (result) {
-            $(selector).html('Hello123' + result.data().NAME + ' ' + result.data().LAST_NAME + '!')
-        }
-    );
-}
-
 application.prototype.displayDealStatus = function (selector) {
     BX24.callMethod(
         "crm.status.list",

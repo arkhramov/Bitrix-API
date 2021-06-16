@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 
 <div id="app">
-    <div id="user-name"></div>
     <div class="row">
         <div class="col-sm-6">
-            <div id="dealNew"></div>
-            <div id="dealInProcess"></div>
-            <div id="dealProcessed"></div>
-            <div id="dealConverted"></div>
-            <div id="dealJunk"></div>
+            <div id="dealNew" class="btn active"></div>
+            <div id="dealInProcess" class="btn"></div>
+            <div id="dealProcessed" class="btn"></div>
+            <div id="dealConverted" class="btn"></div>
+            <div id="dealJunk" class="btn"></div>
         </div>
         <div class="col-sm-6">
             <table>
@@ -36,8 +36,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <script src="//api.bitrix24.com/api/v1/"></script>
 <script type="text/javascript" src="js/application.js"></script>
 <script type="text/javascript">
@@ -45,7 +45,6 @@
     $(document).ready(function () {
 
         BX24.init(function () {
-            app.displayCurrentUser('#user-name');
             app.displayUserDeals(1);
             app.displayDealStatus();
         });
